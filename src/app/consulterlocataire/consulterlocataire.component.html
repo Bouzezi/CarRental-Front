@@ -1,0 +1,137 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Locataire</h5> 
+                </div>
+                <div class="card-body">
+                    <form (ngSubmit)="updateLocataire()" #myForm="ngForm">
+                        <div class="row">
+                            <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Nom</label>
+                                <input type="text" class="form-control"  placeholder="Nom" name="nom" required #nom="ngModel" [(ngModel)]="locataire.nom">
+                            </div>
+                            <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="alert alert-danger">
+                                Nom est requis
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Prenom</label>
+                                <input type="text" class="form-control" name="prenom" placeholder="Prenom" required #prenom="ngModel" [(ngModel)]="locataire.prenom">
+                            </div>
+                            <div *ngIf="prenom.invalid && (prenom.dirty || prenom.touched)" class="alert alert-danger">
+                                prenom est requis
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Adresse</label>
+                                <input type="text" class="form-control" name="adresse" placeholder="Adresse"  required #adresse="ngModel" [(ngModel)]="locataire.adresse">
+                            </div>
+                            <div *ngIf="adresse.invalid && (adresse.dirty || adresse.touched)" class="alert alert-danger">
+                                adresse est requis
+                            </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <input type="submit" class="btn btn-info mx-5" value="Valider" [disabled]="!myForm.form.valid">
+                            <input type="reset" class="btn btn-secondary mx-5" value="Annuler" (click)="myForm.reset()">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-user">
+              <div >
+                <img src="../assets/img/pexels-alteredsnaps-14747962.jpg" alt="...">
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+
+        <div class="card-header">
+            <h4 class="card-title"> Liste des Voitures louées</h4>
+        </div>
+        <div class="d-flex justify-content-between px-3">
+            <div class="input-group no-border w-25 ">
+                <input type="text" [(ngModel)]="value" class="form-control" (ngModelChange)="search()" placeholder="Search...">
+                <div class="input-group-append">
+                <div class="input-group-text">
+                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                </div>
+                </div>
+            </div>
+      </div>
+
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  Immatricule
+                </th>
+                <th>
+                    Marque
+                </th>
+                <th>
+                  Modele
+                </th>
+                <th>
+                    Kilometrage
+                </th>
+                <th>
+                    Prix Location
+                </th>
+                <th>
+                    Action
+                </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let car of voitures | paginate: { itemsPerPage: 5,currentPage: page};">
+                    <td>
+                        {{car.num_imma}}
+                    </td>
+                    <td>
+                        {{car.marque}}
+                    </td>
+                    <td>
+                        {{car.modele}}
+                    </td>
+                    <td>
+                        {{car.kilometrage}}
+                    </td>
+                    <td>
+                        {{car.prix_location}}
+                    </td>
+                    <td>
+                        <span  (click)="deleteData(car.num_imma)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>
+                        </span>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls previousLabel="Préc" nextLabel="Suiv" (pageChange)="page = $event">
+            </pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

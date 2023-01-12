@@ -13,8 +13,14 @@ export class DataService {
   listeLocataires():Observable<Object>{
     return this.http.get('http://127.0.0.1:8000/locataires/');
   }
+  addRenter(renter: Locataire):Observable<any>{
+    return this.http.post('http://localhost:8000/locataires/',renter);
+  }
   deleteRenter(id:any){
     return this.http.delete('http://127.0.0.1:8000/locataires/'+id);
+  }
+  updateRenter(id:any, data:Locataire){
+    return this.http.put('http://127.0.0.1:8000/locataires/'+id,data);
   }
   getRenterByName(nom:any){
     return this.http.get('http://127.0.0.1:8000/locataires/nom/'+nom);

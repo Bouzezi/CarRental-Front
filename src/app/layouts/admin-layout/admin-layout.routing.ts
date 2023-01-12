@@ -9,6 +9,8 @@ import { ListelocatairesComponent } from '../../listelocataires/listelocataires.
 import { ListevoituresComponent } from '../../listevoitures/listevoitures.component';
 import { AjoutvoitureComponent } from '../../ajoutvoiture/ajoutvoiture.component';
 import { ModifvoitureComponent } from '../../modifvoiture/modifvoiture.component';
+import { AjoutlocataireComponent } from '../../ajoutlocataire/ajoutlocataire.component';
+import { ConsulterlocataireComponent } from '../../consulterlocataire/consulterlocataire.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -18,6 +20,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'typography',     component: TypographyComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'listevoitures/ajoutVoiture',   component: AjoutvoitureComponent },
+    { path: 'listelocataires/ajoutLocataire',   component: AjoutlocataireComponent },
     { path: 'listevoitures/modifVoiture/:id',   component: ModifvoitureComponent },
+    { path: 'listelocataires/plus/:id',   component: ConsulterlocataireComponent },
     { path: 'notifications',  component: NotificationsComponent }
 ];

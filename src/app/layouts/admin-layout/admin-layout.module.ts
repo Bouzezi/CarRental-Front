@@ -17,6 +17,8 @@ import { ListevoituresComponent } from '../../listevoitures/listevoitures.compon
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AjoutvoitureComponent } from '../../ajoutvoiture/ajoutvoiture.component';
 import { ModifvoitureComponent } from '../../modifvoiture/modifvoiture.component';
+import { AjoutlocataireComponent } from '../../ajoutlocataire/ajoutlocataire.component';
+import { ConsulterlocataireComponent } from '../../consulterlocataire/consulterlocataire.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -37,7 +39,9 @@ import { ModifvoitureComponent } from '../../modifvoiture/modifvoiture.component
     ListevoituresComponent,
     AjoutvoitureComponent,
     NotificationsComponent,
-    ModifvoitureComponent
+    ModifvoitureComponent,
+    AjoutlocataireComponent,
+    ConsulterlocataireComponent
   ]
 })
 

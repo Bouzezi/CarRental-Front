@@ -1,0 +1,61 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Ajouter un Locataire</h5> 
+                </div>
+                <div class="card-body">
+                    <form (ngSubmit)="insertData()" #myForm="ngForm">
+                        <div class="row">
+                            <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Nom</label>
+                                <input type="text" class="form-control"  placeholder="Nom" name="nom" required #nom="ngModel" [(ngModel)]="locataire.nom">
+                            </div>
+                            <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="alert alert-danger">
+                                Nom est requis
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Prenom</label>
+                                <input type="text" class="form-control" name="prenom" placeholder="Prenom" required #prenom="ngModel" [(ngModel)]="locataire.prenom">
+                            </div>
+                            <div *ngIf="prenom.invalid && (prenom.dirty || prenom.touched)" class="alert alert-danger">
+                                prenom est requis
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Adresse</label>
+                                <input type="text" class="form-control" name="adresse" placeholder="Adresse"  required #adresse="ngModel" [(ngModel)]="locataire.adresse">
+                            </div>
+                            <div *ngIf="adresse.invalid && (adresse.dirty || adresse.touched)" class="alert alert-danger">
+                                adresse est requis
+                            </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <input type="submit" class="btn btn-info mx-5" value="Valider" [disabled]="!myForm.form.valid">
+                            <input type="reset" class="btn btn-secondary mx-5" value="Annuler" (click)="myForm.reset()">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-user">
+              <div >
+                <img src="../assets/img/key.jpg" alt="...">
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
