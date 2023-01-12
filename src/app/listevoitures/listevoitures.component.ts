@@ -14,8 +14,7 @@ export class ListevoituresComponent implements OnInit {
   page:Number = 1
   etat:Etat=new Etat(2,"tous")
   listEtats:any=[new Etat(0,"disponible"),new Etat(1,"louée"),new Etat(2,"tous")]
-  constructor(private dataService: DataService,private toastr: ToastrService) {
-   }
+  constructor(private dataService: DataService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.listeVoiture();

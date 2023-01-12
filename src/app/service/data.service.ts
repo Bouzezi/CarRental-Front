@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Locataire } from '../modeles/locataire';
+import { Voiture } from '../modeles/voiture';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,11 +26,15 @@ export class DataService {
   listeVoiture():Observable<any>{
     return this.http.get('http://127.0.0.1:8000/voitures/');
   }
-
+  addCar(car: Voiture):Observable<any>{
+    return this.http.post('http://localhost:8000/voitures/',car);
+  }
   getCarByImma(imma:any){
     return this.http.get('http://127.0.0.1:8000/voitures/'+imma);
   }
-
+  updateCar(id:any, data:Voiture){
+    return this.http.put('http://127.0.0.1:8000/voitures/'+id,data);
+  }
   deleteCar(imma:any){
     return this.http.delete('http://127.0.0.1:8000/voitures/'+imma);
   }
