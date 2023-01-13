@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Locataire } from '../modeles/locataire';
+import { Louer } from '../modeles/louer';
 import { DataService } from '../service/data.service';
 
 @Component({
@@ -16,11 +17,14 @@ export class ConsulterlocataireComponent implements OnInit {
   voitures:any= []
   value:any
   page:Number = 1
+  noData=false
+  rendre=new Louer
   constructor(private dataService: DataService,private toastr: ToastrService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.getRenterById();
+    this.getListCarsOfRenter(); 
   }
 
   getRenterById(){
@@ -29,11 +33,25 @@ export class ConsulterlocataireComponent implements OnInit {
         this.data=res;
         this.locataire=this.data;
       }
-      (error) =>{
-        this.showNotification(error,"warning")
+    },
+    (error:any)=>{
+        this.showNotification(error.error,"warning")
+    })
+  }
+
+  getListCarsOfRenter(){
+    this.dataService.getListCarsOfRenter(this.id).subscribe(res=>{
+      console.log(res);
+      this.voitures.splice(0);
+      this.voitures=res;
+      if(this.voitures.length == 0){
+        this.noData=true
+      }else{
+        this.noData=false
       }
     })
   }
+
   updateLocataire(){
     this.dataService.updateRenter(this.id, this.locataire).subscribe(res => {
       console.log(res);
@@ -55,16 +73,37 @@ export class ConsulterlocataireComponent implements OnInit {
     });
   }
 
-  deleteData(imma:any){
+  return_Car(imma:any){
     console.log(imma);
-    /* this.dataService.deleteCar(imma).subscribe(res => {
-      //console.log(res);
-      this.listeVoiture();
+    this.rendre.num_imma=imma;
+    this.rendre.id_loc=this.id;
+    this.dataService.return_Car(this.rendre).subscribe(res => {
+      this.getListCarsOfRenter();
       this.showNotification('la voiture est disponible',"success")
-    }) */
+    })
   }
+
   search(){
-    
+    if(this.getListCarsOfRenter.length!=0){
+      if (this.value == ""){
+        this.voitures.splice(0)
+        this.getListCarsOfRenter();
+      }
+      else{
+          if (Number(this.value)){
+            this.dataService.getCarByImma(this.value).subscribe(res=>{
+              console.log(res);
+              this.voitures.splice(0)
+              this.voitures.push(res)
+            });
+          } else{ 
+              this.dataService.getCarByBrand(this.value).subscribe(res=>{
+                console.log(res);
+                this.voitures =res;
+            });
+          } 
+        } 
+    }
   }
 
 }

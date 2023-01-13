@@ -49,13 +49,13 @@ export class ListevoituresComponent implements OnInit {
   filter(){
     console.log(this.etat);
     if (this.etat.id==0){
-      this.dataService.getAvailableCars(this.value).subscribe(res=>{
+      this.dataService.getAvailableCars().subscribe(res=>{
         console.log(res);
         this.voitures.splice(0)
         this.voitures=res
       });
     }else if(this.etat.id==1){
-      this.dataService.getNotAvailableCars(this.value).subscribe(res=>{
+      this.dataService.getNotAvailableCars().subscribe(res=>{
         console.log(res);
         this.voitures.splice(0)
         this.voitures=res

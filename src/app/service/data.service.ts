@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Locataire } from '../modeles/locataire';
+import { Louer } from '../modeles/louer';
 import { Voiture } from '../modeles/voiture';
 @Injectable({
   providedIn: 'root'
@@ -49,11 +50,17 @@ export class DataService {
     return this.http.get('http://127.0.0.1:8000/voitures/marque/'+brand);
   }
 
-  getAvailableCars(etat:any){
+  getAvailableCars(){
     return this.http.get('http://127.0.0.1:8000/voitures/disponible');
   }
-  getNotAvailableCars(etat:any){
+  getNotAvailableCars(){
     return this.http.get('http://127.0.0.1:8000/voitures/louee');
   }
 
+  getListCarsOfRenter(id:any){
+    return this.http.get('http://127.0.0.1:8000/location/listeVoitures/'+id);
+  }
+  return_Car(rendre:Louer){
+    return this.http.put('http://127.0.0.1:8000/location/rendre/',rendre);
+  }
 }
