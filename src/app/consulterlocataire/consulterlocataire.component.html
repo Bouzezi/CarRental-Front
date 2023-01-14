@@ -67,14 +67,98 @@
             <h4 class="card-title"> Liste des Voitures louées</h4>
         </div>
         <div class="d-flex justify-content-between px-3">
-            <div class="input-group no-border w-25 ">
-                <input type="text" [(ngModel)]="value" class="form-control" (ngModelChange)="search()" placeholder="Search...">
+            <div class="input-group no-border w-50 ">
+                <input type="text" [(ngModel)]="value" class="form-control" (ngModelChange)="search()" placeholder="Recherche...">
                 <div class="input-group-append">
                 <div class="input-group-text">
                     <i class="now-ui-icons ui-1_zoom-bold"></i>
                 </div>
                 </div>
             </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" (click)="voituresDisponible()" data-target="#exampleModal">
+                Ajouter Location
+            </button>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Louer une Voiture</h5>
+                    <div class="input-group no-border w-50 ">
+                        <input type="text" [(ngModel)]="modalValue" class="form-control" (ngModelChange)="recherche()" placeholder="Recherche...">
+                        <div class="input-group-append">
+                        <div class="input-group-text">
+                            <i class="now-ui-icons ui-1_zoom-bold"></i>
+                        </div>
+                        </div>
+                    </div>    
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    
+                    </div>
+                   
+                    <div class="modal-body">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                              <table class="table">
+                                <thead class=" text-primary">
+                                  <th>
+                                    Immatricule
+                                  </th>
+                                  <th>
+                                      Marque
+                                  </th>
+                                  <th>
+                                    Modele
+                                  </th>
+                                  <th>
+                                      Kilometrage
+                                  </th>
+                                  <th>
+                                      Prix Location
+                                  </th>
+                                  <th>
+                                      Louer
+                                  </th>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let car of listeVoituresDesp | paginate: { itemsPerPage: 3,currentPage: pageModal};">
+                                      <td>
+                                          {{car.num_imma}}
+                                      </td>
+                                      <td>
+                                          {{car.marque}}
+                                      </td>
+                                      <td>
+                                          {{car.modele}}
+                                      </td>
+                                      <td>
+                                          {{car.kilometrage}}
+                                      </td>
+                                      <td>
+                                          {{car.prix_location}}
+                                      </td>
+                                      <td>
+                                        <!-- <input type="checkbox" name="{{car.num_imma}}"  (change)="onChange(car.num_imma, $event.target.checked)"> -->
+                                        <button type="button" class="btn btn-primary" (click)="louerVoiture(car.num_imma)">Louer</button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <pagination-controls previousLabel="Préc" nextLabel="Suiv" (pageChange)="pageModal = $event">
+                              </pagination-controls>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+            </div> 
       </div>
 
         <div class="card-body">
@@ -141,3 +225,7 @@
     </div>
   </div>
 </div>
+
+
+  
+  

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Locataire } from '../modeles/locataire';
 import { DataService } from '../service/data.service';
-
+declare var $: any;
 @Component({
   selector: 'ajoutlocataire',
   templateUrl: './ajoutlocataire.component.html',
@@ -33,4 +33,13 @@ locataire=new Locataire
       positionClass: 'toast-' + 'bottom' + '-' +  'right'
     });
   }
+
+/*   onSeachDropdownValue($event) {
+    const value = $event.target.value;
+    this.searchedOptions = this.options.filter(option => option.includes(value));
+    }
+  
+    onSelectDropdownValue(option) {
+      // Do something with selected value
+    } */
 }

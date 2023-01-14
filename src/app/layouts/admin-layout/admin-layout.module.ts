@@ -19,6 +19,7 @@ import { AjoutvoitureComponent } from '../../ajoutvoiture/ajoutvoiture.component
 import { ModifvoitureComponent } from '../../modifvoiture/modifvoiture.component';
 import { AjoutlocataireComponent } from '../../ajoutlocataire/ajoutlocataire.component';
 import { ConsulterlocataireComponent } from '../../consulterlocataire/consulterlocataire.component';
+
 @NgModule({
   imports: [
     CommonModule,

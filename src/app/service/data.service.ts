@@ -33,6 +33,9 @@ export class DataService {
   listeVoiture():Observable<any>{
     return this.http.get('http://127.0.0.1:8000/voitures/');
   }
+  all_cars_not_rented():Observable<any>{
+    return this.http.get('http://127.0.0.1:8000/voitures/disponible');
+  }
   addCar(car: Voiture):Observable<any>{
     return this.http.post('http://localhost:8000/voitures/',car);
   }
@@ -62,5 +65,8 @@ export class DataService {
   }
   return_Car(rendre:Louer){
     return this.http.put('http://127.0.0.1:8000/location/rendre/',rendre);
+  }
+  louerVoiture(louer:Louer):Observable<any>{
+    return this.http.post('http://localhost:8000/location/louer',louer);
   }
 }

@@ -15,3 +15,8 @@
 .tablelist{
     margin-top:-79px;
 }
+
+.modal-header .close {
+    margin: 0rem !important;
+    margin-top: -1rem !important;
+}
