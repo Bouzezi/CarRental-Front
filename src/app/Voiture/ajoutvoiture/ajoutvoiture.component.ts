@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Voiture } from '../modeles/voiture';
-import { DataService } from '../service/data.service';
+import { Voiture } from '../../modeles/voiture';
+import { DataService } from '../../service/data.service';
 
 @Component({
   selector: 'ajoutvoiture',

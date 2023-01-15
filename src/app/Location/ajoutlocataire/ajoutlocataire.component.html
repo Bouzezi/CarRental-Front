@@ -42,12 +42,6 @@
                             </div>
                             </div>
                         </div>
-                        <!-- <div>
-                            <input type="text"  placeholder="liste des locataires" (keyup)="onSeachDropdownValue($event)"/>
-                            <div class="dropdown-selector">
-                              <div class="dropdown-selector-option" *ngFor="let option of searchedOptions" (click)="onSelectDropdownValue(option)">{{option}}</div>
-                            </div>
-                        </div> -->
                         <div class="d-flex justify-content-center">
                             <input type="submit" class="btn btn-info mx-5" value="Valider" [disabled]="!myForm.form.valid">
                             <input type="reset" class="btn btn-secondary mx-5" value="Annuler" (click)="myForm.reset()">

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Etat } from '../modeles/etat';
-import { DataService } from '../service/data.service';
+import { Etat } from '../../modeles/etat';
+import { DataService } from '../../service/data.service';
 
 @Component({
   selector: 'listevoitures',

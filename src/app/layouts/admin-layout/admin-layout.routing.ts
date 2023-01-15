@@ -1,27 +1,19 @@
 import { Routes } from '@angular/router';
 
 import { DashboardComponent } from '../../dashboard/dashboard.component';
-import { UserProfileComponent } from '../../user-profile/user-profile.component';
-import { TypographyComponent } from '../../typography/typography.component';
-import { IconsComponent } from '../../icons/icons.component';
-import { NotificationsComponent } from '../../notifications/notifications.component';
-import { ListelocatairesComponent } from '../../listelocataires/listelocataires.component';
-import { ListevoituresComponent } from '../../listevoitures/listevoitures.component';
-import { AjoutvoitureComponent } from '../../ajoutvoiture/ajoutvoiture.component';
-import { ModifvoitureComponent } from '../../modifvoiture/modifvoiture.component';
-import { AjoutlocataireComponent } from '../../ajoutlocataire/ajoutlocataire.component';
-import { ConsulterlocataireComponent } from '../../consulterlocataire/consulterlocataire.component';
+import { ListelocatairesComponent } from '../../Location/listelocataires/listelocataires.component';
+import { ListevoituresComponent } from '../../Voiture/listevoitures/listevoitures.component';
+import { AjoutvoitureComponent } from '../../Voiture/ajoutvoiture/ajoutvoiture.component';
+import { ModifvoitureComponent } from '../../Voiture/modifvoiture/modifvoiture.component';
+import { AjoutlocataireComponent } from '../../Location/ajoutlocataire/ajoutlocataire.component';
+import { ConsulterlocataireComponent } from '../../Location/consulterlocataire/consulterlocataire.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
-    { path: 'user-profile',   component: UserProfileComponent },
     { path: 'listelocataires',component: ListelocatairesComponent },
     { path: 'listevoitures',component: ListevoituresComponent },
-    { path: 'typography',     component: TypographyComponent },
-    { path: 'icons',          component: IconsComponent },
     { path: 'listevoitures/ajoutVoiture',   component: AjoutvoitureComponent },
     { path: 'listelocataires/ajoutLocataire',   component: AjoutlocataireComponent },
     { path: 'listevoitures/modifVoiture/:id',   component: ModifvoitureComponent },
     { path: 'listelocataires/plus/:id',   component: ConsulterlocataireComponent },
-    { path: 'notifications',  component: NotificationsComponent }
 ];

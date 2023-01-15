@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Locataire } from '../modeles/locataire';
-import { Louer } from '../modeles/louer';
-import { DataService } from '../service/data.service';
+import { Voiture } from '../../modeles/voiture';
+import { Locataire } from '../../modeles/locataire';
+import { Louer } from '../../modeles/louer';
+import { DataService } from '../../service/data.service';
 
 @Component({
   selector: 'consulterlocataire',
@@ -14,7 +15,7 @@ export class ConsulterlocataireComponent implements OnInit {
   id:any;
   data:any;
   locataire=new Locataire
-  voitures:any= []
+  voituresLouee:any= []
   value:any
   page:Number = 1
   pageModal:Number = 1
@@ -24,6 +25,7 @@ export class ConsulterlocataireComponent implements OnInit {
   modalValue:any
   listeLocation:any=[]
   louer:Louer
+
   constructor(private dataService: DataService,private toastr: ToastrService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -48,9 +50,9 @@ export class ConsulterlocataireComponent implements OnInit {
   getListCarsOfRenter(){
     this.dataService.getListCarsOfRenter(this.id).subscribe(res=>{
       console.log(res);
-      this.voitures.splice(0);
-      this.voitures=res;
-      if(this.voitures.length == 0){
+      this.voituresLouee.splice(0);
+      this.voituresLouee=res;
+      if(this.voituresLouee.length == 0){
         this.noData=true
       }else{
         this.noData=false
@@ -87,26 +89,25 @@ export class ConsulterlocataireComponent implements OnInit {
   }
 
   search(){
-    if(this.getListCarsOfRenter.length!=0){
       if (this.value == ""){
-        this.voitures.splice(0)
+        this.voituresLouee.splice(0)
         this.getListCarsOfRenter();
       }
       else{
           if (Number(this.value)){
-            this.dataService.getCarByImma(this.value).subscribe(res=>{
+            this.dataService.getCarByImma(Number(this.value)).subscribe(res=>{
               console.log(res);
-              this.voitures.splice(0)
-              this.voitures.push(res)
+               if(res){
+                if(res.id_loc == this.id){
+                  this.voituresLouee.splice(0)
+                  this.voituresLouee.push(res)
+                }
+              } 
             });
           } else{ 
-              this.dataService.getCarByBrand(this.value).subscribe(res=>{
-                console.log(res);
-                this.voitures =res;
-            });
+            this.voituresLouee=this.voituresLouee.filter(e => e.marque.includes(this.value));
           } 
         } 
-    }
   }
 
   showNotification(message,color){
@@ -125,17 +126,18 @@ export class ConsulterlocataireComponent implements OnInit {
       this.voituresDisponible();
     }
     else{
-        if (Number(this.modalValue)){
-          this.dataService.getCarByImma(this.modalValue).subscribe(res=>{
+        if (Number(this.modalValue)){          
+          this.dataService.getCarByImma(Number(this.modalValue)).subscribe(res=>{
             console.log(res);
-            this.listeVoituresDesp.splice(0)
-            this.listeVoituresDesp.push(res)
+             if(res){
+              if(res.etat == 0){
+                this.listeVoituresDesp.splice(0)
+                this.listeVoituresDesp.push(res)
+              }
+            } 
           });
         } else{ 
-            this.dataService.getCarByBrand(this.modalValue).subscribe(res=>{
-              console.log(res);
-              this.listeVoituresDesp =res;
-          });
+          this.listeVoituresDesp=this.listeVoituresDesp.filter(e => e.marque.includes(this.modalValue));
         } 
       } 
   }

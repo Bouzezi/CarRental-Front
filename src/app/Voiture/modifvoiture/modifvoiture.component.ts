@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Voiture } from '../modeles/voiture';
-import { DataService } from '../service/data.service';
+import { Voiture } from '../../modeles/voiture';
+import { DataService } from '../../service/data.service';
 
 @Component({
   selector: 'modifvoiture',

@@ -39,7 +39,7 @@ export class DataService {
   addCar(car: Voiture):Observable<any>{
     return this.http.post('http://localhost:8000/voitures/',car);
   }
-  getCarByImma(imma:any){
+  getCarByImma(imma:any):Observable<any>{
     return this.http.get('http://127.0.0.1:8000/voitures/'+imma);
   }
   updateCar(id:any, data:Voiture){
