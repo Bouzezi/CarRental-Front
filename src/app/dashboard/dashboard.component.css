@@ -1,0 +1,19 @@
+.card{
+    background-color: #21242b;
+    /*#2c2f38 
+    #ff3636*/
+}
+
+.card-title{
+    color:white;
+    text-align: center;
+}
+
+  .numberC{
+    color: #ffffff;
+    display: grid;
+    place-items: center;
+    font-weight: 600;
+    font-size: 3em;
+  }
+  
